@@ -31,13 +31,15 @@ function delay(time) {
     const page = await browser.newPage();
     await page.goto(start_url, {waitUntil: 'networkidle2'});
     await page.click('a[href="trading/login.php"]', {waitUntil: 'networkidle2'});
-    //await page.screenshot({path: 'example.png'});
     await page.waitForSelector('input[name="username"]');
-    await page.type('input[name="username"]', 'admin', {delay: 150});
-    await page.type('input[name="password"]', 'iloveblue', {delay: 150});
+    await page.type('input[name="username"]', 'admin', {delay: 1});
+    await page.type('input[name="password"]', 'iloveblue', {delay: 1});
     await page.click('button');
+
+    //Buy stocks
     await page.waitForSelector('#buy_stocks_modal', {visible:true});
     await delay(2000);
+
     await page.click('#buy_stocks_modal');
     await page.waitForSelector('#stock_selected', {visible:true});
     await page.click('#stock_selected');
@@ -51,6 +53,13 @@ function delay(time) {
 
 
 
+    //Sell stocks
+    await page.click('button[data-target="#sell_stocks"]');
+
+    await page.waitForSelector('#sell_stock_selected', {visible:true});
+    await page.click('#sell_stock_selected');
+    await page.select('#sell_stock_selected', 'f5');
+    await page.type('#sell_stock_qty', '258', {delay: 150});
 
 
 
