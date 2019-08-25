@@ -1,8 +1,11 @@
 const puppeteer = require('puppeteer');
 
-const start_url = 'http://10.1.10.150/';
+let start_url = 'https://960a0cdb-5ca5-494e-9229-7d9cc1b77c44.access.udf.f5.com/';
+const ip = process.env.IP;
 
-
+if (ip) {
+  start_url = 'http://' + ip + '/';
+}
 
 (async () => {
 
@@ -10,6 +13,7 @@ const start_url = 'http://10.1.10.150/';
   for (let i=0; i<1;i++) {
     const browser = await puppeteer.launch({
       headless: false,
+      defaultViewport: null,
       //slowMo: 1000
     });
     const page = await browser.newPage();
@@ -19,7 +23,7 @@ const start_url = 'http://10.1.10.150/';
     await page.waitForSelector('input[name="username"]');
     await page.type('input[name="username"]', 'admin', {delay: 200});
     await page.type('input[name="password"]', 'iloveblue', {delay: 200});
-    await page.click('button');
+    await page.click('.buy_stocks_modal');
     //await browser.close();
   }
 })();
