@@ -76,6 +76,6 @@ function delay(time) {
 
 
 
-    //await browser.close();
+    await browser.close();
   }
 })();
