@@ -55,6 +55,7 @@ function delay(time) {
 
     //Sell stocks
     await page.waitForSelector('button[data-target="#sell_stocks"]', {visible:true});
+    await delay(2000);
     await page.click('button[data-target="#sell_stocks"]');
 
     await page.waitForSelector('#sell_stock_selected', {visible:true});
