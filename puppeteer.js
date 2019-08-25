@@ -33,8 +33,8 @@ function delay(time) {
     await page.click('a[href="trading/login.php"]', {waitUntil: 'networkidle2'});
     //await page.screenshot({path: 'example.png'});
     await page.waitForSelector('input[name="username"]');
-    await page.type('input[name="username"]', 'admin', {delay: 1});
-    await page.type('input[name="password"]', 'iloveblue', {delay: 1});
+    await page.type('input[name="username"]', 'admin', {delay: 150});
+    await page.type('input[name="password"]', 'iloveblue', {delay: 150});
     await page.click('button');
     await page.waitForSelector('#buy_stocks_modal', {visible:true});
     await delay(2000);
@@ -42,7 +42,7 @@ function delay(time) {
     await page.waitForSelector('#stock_selected', {visible:true});
     await page.click('#stock_selected');
     await page.select('#stock_selected', 'f5');
-    await page.type('#stock_qty', '258', {delay: 1});
+    await page.type('#stock_qty', '258', {delay: 150});
     await page.click('#buy_owned_qty');
     await page.click('#buy_stocks_button');
 
