@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 
 let start_url = 'https://960a0cdb-5ca5-494e-9229-7d9cc1b77c44.access.udf.f5.com/';
 const ip = process.env.IP;
-const pace = 1;
+const pace = 150;
 const delay_between = 2000;
 
 
