@@ -45,6 +45,9 @@ function delay(time) {
     await page.type('#stock_qty', '258', {delay: 150});
     await page.click('#buy_owned_qty');
     await page.click('#buy_stocks_button');
+    await page.waitForSelector('#result_button_stocks', {visible:true});
+    await delay(2000);
+    await page.click('#result_button_stocks');
 
 
 
