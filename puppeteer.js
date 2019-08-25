@@ -25,7 +25,7 @@ function delay(time) {
 (async () => {
 
 
-  for (let i=0; i<1;i++) {
+  for (let i=0; i<100000;i++) {
     const browser = await puppeteer.launch({
       headless: false,
       defaultViewport: null,
