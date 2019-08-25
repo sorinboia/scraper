@@ -44,7 +44,7 @@ function delay(time) {
     await page.waitForSelector('#stock_selected', {visible:true});
     await page.click('#stock_selected');
     await page.select('#stock_selected', 'f5');
-    await page.type('#stock_qty', '258', {delay: 150});
+    await page.type('#stock_qty', '258', {delay: 1});
     await page.click('#buy_owned_qty');
     await page.click('#buy_stocks_button');
     await page.waitForSelector('#result_button_stocks', {visible:true});
@@ -54,12 +54,14 @@ function delay(time) {
 
 
     //Sell stocks
+    await page.waitForSelector('button[data-target="#sell_stocks"]', {visible:true});
     await page.click('button[data-target="#sell_stocks"]');
 
     await page.waitForSelector('#sell_stock_selected', {visible:true});
     await page.click('#sell_stock_selected');
+
     await page.select('#sell_stock_selected', 'f5');
-    await page.type('#sell_stock_qty', '258', {delay: 150});
+    await page.type('#sell_stock_qty', '258', {delay: 1});
 
 
 
