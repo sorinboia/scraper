@@ -1,5 +1,9 @@
 const puppeteer = require('puppeteer');
 
+const start_url = 'http://10.1.10.150/';
+
+
+
 (async () => {
 
 
@@ -9,11 +13,13 @@ const puppeteer = require('puppeteer');
       //slowMo: 1000
     });
     const page = await browser.newPage();
-    await page.goto('https://377fd6ef-0d52-400e-ab26-210865bcaf12.access.udf.f5.com/login.php', {waitUntil: 'networkidle2'});
+    await page.goto(start_url, {waitUntil: 'networkidle2'});
+    await page.click('a[href="trading/login.php"]', {waitUntil: 'networkidle2'});
     //await page.screenshot({path: 'example.png'});
-    await page.type('input[name="username"]', 'admin', {delay: 50});
-    await page.type('input[name="password"]', 'password', {delay: 50});
-    await page.click('input[name="Login"]');
+    await page.waitForSelector('input[name="username"]');
+    await page.type('input[name="username"]', 'admin', {delay: 200});
+    await page.type('input[name="password"]', 'iloveblue', {delay: 200});
+    await page.click('button');
     //await browser.close();
   }
 })();
