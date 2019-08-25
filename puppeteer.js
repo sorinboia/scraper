@@ -43,6 +43,10 @@ function delay(time) {
     await page.click('#stock_selected');
     await page.select('#stock_selected', 'f5');
     await page.type('#stock_qty', '258', {delay: 1});
+    await page.click('#buy_owned_qty');
+    await page.click('#buy_stocks_button');
+
+
 
 
 
