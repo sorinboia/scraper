@@ -1,15 +1,15 @@
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 const axios = require('axios');
 
-const bot_req = async (user_agent) => {
+const bot_req = async ({user_agent,url,data}) => {
   return new Promise ((res,rej) => {
     const reqOptions = {
-      method: end_point.method || 'GET',
-      url:base+end_point.url,
-      data: end_point.data || '',
+      method: data ? 'POST' : 'GET',
+      url:url,
+      data: data || '',
       headers: {
         'User-Agent' : user_agent || 'axios_user_agent'
-      }
+      },
     };
     axios(reqOptions)
       .then((data) => {
@@ -23,23 +23,31 @@ const bot_req = async (user_agent) => {
 
 
 class Bot {
-  constructor(url) {
+  constructor({url,data}) {
     this.url = url;
+    this.data = data;
+
   }
 
   async simple() {
-    return await bot_req();
+    const options = {
+      url: this.url,
+      data: this.data,
+    };
+    return await bot_req(options);
   }
 
   async impersonating () {
-    return await bot_req('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)');
+    const options = {
+      url: this.url,
+      data: this.data,
+      user_agent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+    };
+    return await bot_req(options);
   }
 }
 
-module.exports = {
-  simple,
-  impersonating
-};
+module.exports = Bot;
 
 
 
