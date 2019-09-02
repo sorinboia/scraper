@@ -10,17 +10,11 @@ if (ip) {
   start_url = 'http://' + ip + '/';
 }
 
-
 function delay(time) {
   return new Promise(function(resolve) {
     setTimeout(resolve, time)
   });
 }
-
-
-
-
-
 
 (async () => {
 
@@ -73,8 +67,6 @@ function delay(time) {
     await page.waitForSelector('#result_button_stocks', {visible:true});
     await delay(delay_between);
     await page.click('#result_button_stocks');
-
-
 
     await browser.close();
   }
