@@ -1,7 +1,7 @@
 
 
-const base = 'https://10.1.10.150/';
-const form_url = 'https://10.1.10.150/create_form.php';
+const base = 'http://10.1.10.150/';
+const form_url = 'http://10.1.10.150/create_form.php';
 
 const bot1 = new (require('./start'))({
   url:form_url,
