@@ -7,11 +7,10 @@ function delay(time) {
 }
 
 
-
 class Puppet {
   constructor({base_url}) {
     this.base_url = base_url;
-    this.pace = 100;
+    this.pace = 150;
   }
 
   async contact_form({headless}) {
@@ -25,6 +24,7 @@ class Puppet {
     //await delay(2000);
 
     if ((await page.evaluate(() => document.body.innerHTML)).indexOf('support ID') !== -1 ) {
+
       await browser.close();
       return 0;
     }
@@ -39,8 +39,8 @@ class Puppet {
     await page.type('input[name="lname"]', 'Bot', {delay: this.pace});
     await page.type('input[name="email"]', 'smart_bot@bot.com', {delay: this.pace});
     await page.type('textarea[name="message"]', 'You will not defeat me', {delay: this.pace});
-    await page.click('input[value="Send Message"]',{waitUntil: 'networkidle2'});
-    await page.waitForNavigation({waitUntil: 'networkidle0'});
+    await page.click('input[value="Send Message"]');
+    await delay(2000);
     await browser.close();
     return 1;
   }
