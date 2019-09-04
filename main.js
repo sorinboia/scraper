@@ -90,7 +90,7 @@ if (speed == 'slow') {
   })();
 } else {
   console.log('Running fast');
-  setInterval(bot2.contact_head,3000);
+  setInterval(main,5000);
 
 }
 
