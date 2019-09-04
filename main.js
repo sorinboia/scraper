@@ -79,7 +79,7 @@ const main = async () => {
 
 
 if (speed == 'slow') {
-  console.log('Running slowly')
+  console.log('Running slowly');
   (async () => {
     for (let i=0;i<1000000;i++) {
       process.stdout.write('\033c');
@@ -89,8 +89,8 @@ if (speed == 'slow') {
     }
   })();
 } else {
-  console.log('Running fast')
-  setInterval(main,2000);
+  console.log('Running fast');
+  setInterval(bot2.contact_head,3000);
 
 }
 
