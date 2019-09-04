@@ -1,3 +1,5 @@
+const speed = process.env.speed || 'slow';
+
 
 
 const base = 'http://10.1.10.150/';
@@ -75,13 +77,23 @@ const main = async () => {
 };
 
 
-(async () => {
-  for (let i=0;i<1000000;i++) {
-    process.stdout.write('\033c');
-    console.log('Iteration',i);
-    await main();
-    await delay(5000);
-  }
-})();
+
+if (speed == 'slow') {
+  (async () => {
+    for (let i=0;i<1000000;i++) {
+      process.stdout.write('\033c');
+      console.log('Iteration',i);
+      await main();
+      await delay(5000);
+    }
+  })();
+} else {
+
+  setTimeout(main,2000);
+
+}
+
+
+
 
 

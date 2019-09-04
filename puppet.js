@@ -24,10 +24,10 @@ class Puppet {
     //await delay(2000);
 
     if ((await page.evaluate(() => document.body.innerHTML)).indexOf('support ID') !== -1 ) {
-
       await browser.close();
       return 0;
     }
+
     await page.click('a[href="contact.html"]');
     await delay(2000);
     if ((await page.evaluate(() => document.body.innerHTML)).indexOf('support ID') !== -1 ) {
