@@ -10,7 +10,7 @@ function delay(time) {
 class Puppet {
   constructor({base_url}) {
     this.base_url = base_url;
-    this.pace = 150;
+    this.pace = 10;
   }
 
   async contact_form({headless}) {
