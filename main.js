@@ -29,7 +29,7 @@ function delay(time) {
 
 
 const main = async () => {
-/*
+
   process.stdout.write("Simple bot ");
   let r1 = await bot1.simple();
   if(r1.status === 200 && r1.data.indexOf('support ID') == -1 ) {
@@ -49,7 +49,7 @@ const main = async () => {
   process.stdout.write("Headless browser bot ");
   let r3 = await bot2.contact_headless();
   r3 ? console.log('SUCCESS') : console.log('DETECTED');
-*/
+
   process.stdout.write("Browser bot ");
   let r4 = await bot2.contact_head();
   r4 ? console.log('SUCCESS') : console.log('DETECTED');
@@ -90,11 +90,6 @@ if (speed == 'slow') {
   })();
 } else {
   console.log('Running fast');
-  setInterval(main,5000);
+  setInterval(main, 5000);
 
 }
-
-
-
-
-
