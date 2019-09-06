@@ -21,7 +21,7 @@ class Puppet {
     });
     const page = await browser.newPage();
     await page.goto(this.base_url, {waitUntil: 'networkidle2'});
-    //await delay(2000);
+    await delay(2000);
 
     if ((await page.evaluate(() => document.body.innerHTML)).indexOf('support ID') !== -1 ) {
       await browser.close();
@@ -29,7 +29,7 @@ class Puppet {
     }
 
     await page.click('a[href="contact.html"]').catch(async (err) => {
-      await browser.close();
+      //await browser.close();
       return 0;
     });
     await delay(2000);
