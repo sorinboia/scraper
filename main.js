@@ -1,9 +1,14 @@
 const speed = process.env.SPEED || 'slow';
 
-
+let colors = require('colors');
 
 const base = 'http://10.1.10.150/';
 const form_url = 'http://10.1.10.150/create_form.php';
+
+
+//const base = 'https://9eed511b-d348-4251-b2aa-33f5fdf29264.access.udf.f5.com/';
+//const form_url = 'https://9eed511b-d348-4251-b2aa-33f5fdf29264.access.udf.f5.com/create_form.php';
+
 
 const bot1 = new (require('./start'))({
   url:form_url,
@@ -29,30 +34,31 @@ function delay(time) {
 
 
 const main = async () => {
-
-  process.stdout.write("Simple bot ");
+  console.log('Bot Type\t\t\t\tStatus'.grey);
+  process.stdout.write("Simple bot\t\t\t\t".yellow);
   let r1 = await bot1.simple();
   if(r1.status === 200 && r1.data.indexOf('support ID') == -1 ) {
-    console.log('SUCCESS');
+    console.log('SUCCESS'.green);
+
   } else {
-    console.log('DETECTED support ID ',r1.data.substring(r1.data.indexOf('support ID')+ 16,r1.data.indexOf('support ID')+ 36));
+    console.log('DETECTED'.red);
   }
 
-  process.stdout.write("Impersonating bot ");
+  process.stdout.write("Impersonating bot\t\t\t".white);
   let r2 = await bot1.impersonating();
   if(r2.status === 200 && r2.data.indexOf('support ID') == -1) {
-    console.log('SUCCESS');
+    console.log('SUCCESS'.green);
   } else {
-    console.log('DETECTED support ID ',r2.data.substring(r2.data.indexOf('support ID')+ 16,r2.data.indexOf('support ID')+ 36));
+    console.log('DETECTED'.red);
   }
 
-  process.stdout.write("Headless browser bot ");
+  process.stdout.write("Headless browser bot\t\t\t".magenta);
   let r3 = await bot2.contact_headless();
-  r3 ? console.log('SUCCESS') : console.log('DETECTED');
+  r3 ? console.log('SUCCESS'.green) : console.log('DETECTED'.red);
 
-  process.stdout.write("Browser bot ");
+  process.stdout.write("Browser bot\t\t\t\t".cyan);
   let r4 = await bot2.contact_head();
-  r4 ? console.log('SUCCESS') : console.log('DETECTED');
+  r4 ? console.log('SUCCESS'.green) : console.log('DETECTED'.red);
 
   /*
   return Promise.all([bot1.simple(),bot1.impersonating(),bot2.contact_headless(),bot2.contact_head()]).
@@ -83,7 +89,7 @@ if (speed == 'slow') {
   (async () => {
     for (let i=0;i<1000000;i++) {
       process.stdout.write('\033c');
-      console.log('Iteration',i);
+      //console.log('Iteration\t\t\t',i);
       await main();
       await delay(5000);
     }
