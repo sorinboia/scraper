@@ -1,9 +1,13 @@
 const speed = process.env.SPEED || 'slow';
+const run_env = process.env.ENV || 'UDF';
 
 let colors = require('colors');
 
-const base = 'http://10.1.10.150/';
-const form_url = 'http://10.1.10.150/create_form.php';
+
+
+const base = run_env =='UDF' ? 'http://10.1.10.150/' : 'https://5cbeeae8-dc91-4132-8e7a-d0f3baf3514a.access.udf.f5.com/';
+
+const form_url = base+'create_form.php';
 
 
 //const base = 'https://9eed511b-d348-4251-b2aa-33f5fdf29264.access.udf.f5.com/';
@@ -90,8 +94,14 @@ if (speed == 'slow') {
     for (let i=0;i<1000000;i++) {
       process.stdout.write('\033c');
       //console.log('Iteration\t\t\t',i);
-      await main();
-      await delay(5000);
+      try {
+        await main();
+        await delay(5000);
+      } catch (err) {
+
+      }
+
+
     }
   })();
 } else {

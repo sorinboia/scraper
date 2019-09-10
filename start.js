@@ -10,6 +10,7 @@ const bot_req = async ({user_agent,url,data}) => {
       headers: {
         'User-Agent' : user_agent || 'axios_user_agent'
       },
+      timeout: 5000
     };
     axios(reqOptions)
       .then((data) => {
