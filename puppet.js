@@ -20,7 +20,7 @@ class Puppet {
       //slowMo: 1000
     });
     const page = await browser.newPage();
-    await page.goto(this.base_url, {waitUntil: 'networkidle2'});
+    await page.goto(this.base_url, {waitUntil: 'networkidle2',timeout:10000});
     await delay(2000);
 
     if ((await page.evaluate(() => document.body.innerHTML)).indexOf('support ID') !== -1 ) {
@@ -37,7 +37,7 @@ class Puppet {
       await browser.close();
       return 0;
     }
-    await page.waitForSelector('input[name="fname"]');
+    await page.waitForSelector('input[name="fname"]',{timeout:10000});
     await page.type('input[name="fname"]', 'Smart', {delay: this.pace});
     await page.type('input[name="lname"]', 'Bot', {delay: this.pace});
     await page.type('input[name="email"]', 'smart_bot@bot.com', {delay: this.pace});

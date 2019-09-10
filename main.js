@@ -61,12 +61,14 @@ const main = async () => {
   }
 
   process.stdout.write("Headless browser bot\t\t\t".magenta);
-  let r3 = await bot2.contact_headless();
-  r3 ? console.log('SUCCESS'.green) : console.log('DETECTED'.red);
+  let r3 = await bot2.contact_headless().catch((err) => console.log('Error retrying on next run'.white));
+  if (r3 === 1) console.log('SUCCESS'.green);
+  else if (r3 === 0) console.log('DETECTED'.red);
 
   process.stdout.write("Browser bot\t\t\t\t".cyan);
-  let r4 = await bot2.contact_head();
-  r4 ? console.log('SUCCESS'.green) : console.log('DETECTED'.red);
+  let r4 = await bot2.contact_head().catch((err) => console.log('Error retrying on next run'.white));
+  if (r4 === 1) console.log('SUCCESS'.green);
+  else if (r4 === 0) console.log('DETECTED'.red);
 
   /*
   return Promise.all([bot1.simple(),bot1.impersonating(),bot2.contact_headless(),bot2.contact_head()]).
