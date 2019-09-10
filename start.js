@@ -16,6 +16,9 @@ const bot_req = async ({user_agent,url,data}) => {
       .then((data) => {
         res(data);
       })
+      .catch((err) => {
+        res('error');
+      })
 
 
   });

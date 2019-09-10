@@ -41,7 +41,9 @@ const main = async () => {
   console.log('Bot Type\t\t\t\tStatus'.grey);
   process.stdout.write("Simple bot\t\t\t\t".yellow);
   let r1 = await bot1.simple();
-  if(r1.status === 200 && r1.data.indexOf('support ID') == -1 ) {
+  if (r1 == 'error') {
+    console.log('Error retrying on next run'.white);
+  } else if(r1.status === 200 && r1.data.indexOf('support ID') == -1 ) {
     console.log('SUCCESS'.green);
 
   } else {
@@ -50,7 +52,9 @@ const main = async () => {
 
   process.stdout.write("Impersonating bot\t\t\t".white);
   let r2 = await bot1.impersonating();
-  if(r2.status === 200 && r2.data.indexOf('support ID') == -1) {
+  if (r2 == 'error') {
+    console.log('Error retrying on next run'.white);
+  } else if(r2.status === 200 && r2.data.indexOf('support ID') == -1) {
     console.log('SUCCESS'.green);
   } else {
     console.log('DETECTED'.red);
@@ -92,14 +96,11 @@ if (speed == 'slow') {
   console.log('Running slowly');
   (async () => {
     for (let i=0;i<1000000;i++) {
-      process.stdout.write('\033c');
+      //process.stdout.write('\033c');
+      process.stdout.write('\x1Bc');
       //console.log('Iteration\t\t\t',i);
-      try {
-        await main();
-        await delay(5000);
-      } catch (err) {
-
-      }
+      await main();
+      await delay(5000);
 
 
     }
