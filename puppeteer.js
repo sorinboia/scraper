@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 
-let start_url = 'https://960a0cdb-5ca5-494e-9229-7d9cc1b77c44.access.udf.f5.com/';
+let start_url = 'https://arcadia.test.sorinb.cloud/';
 const ip = process.env.IP;
 const pace = 150;
 const delay_between = 2000;
@@ -21,7 +21,7 @@ function delay(time) {
 
   for (let i=0; i<100000;i++) {
     const browser = await puppeteer.launch({
-      headless: false,
+      headless: true,
       defaultViewport: null,
       //slowMo: 1000
     });

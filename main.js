@@ -5,7 +5,7 @@ let colors = require('colors');
 
 
 
-const base = run_env =='UDF' ? 'http://10.1.10.150/' : 'https://5cbeeae8-dc91-4132-8e7a-d0f3baf3514a.access.udf.f5.com/';
+const base = 'https://arcadia.test.sorinb.cloud/';
 
 const form_url = base+'create_form.php';
 
@@ -60,15 +60,19 @@ const main = async () => {
     console.log('DETECTED'.red);
   }
 
+
+
   process.stdout.write("Headless browser bot\t\t\t".magenta);
   let r3 = await bot2.contact_headless().catch((err) => console.log('Error retrying on next run'.white));
   if (r3 === 1) console.log('SUCCESS'.green);
   else if (r3 === 0) console.log('DETECTED'.red);
 
+
+  /*
   process.stdout.write("Browser bot\t\t\t\t".cyan);
   let r4 = await bot2.contact_head().catch((err) => console.log('Error retrying on next run'.white));
   if (r4 === 1) console.log('SUCCESS'.green);
-  else if (r4 === 0) console.log('DETECTED'.red);
+  else if (r4 === 0) console.log('DETECTED'.red);*/
 
   /*
   return Promise.all([bot1.simple(),bot1.impersonating(),bot2.contact_headless(),bot2.contact_head()]).
@@ -109,6 +113,6 @@ if (speed == 'slow') {
   })();
 } else {
   console.log('Running fast');
-  setInterval(main, 5000);
+  setInterval(main, 3000);
 
 }
