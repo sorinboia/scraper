@@ -10,6 +10,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Docker login
+      run: echo '${{ secrets.DOCKERHUB_PASS }}' | docker login --username sorinboia --password-stdin
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag sorinboia/scraper:latest
     - name: Push the Docker image
